@@ -38,7 +38,7 @@ def main():
     if not os.path.exists(config["DATA_SOURCE"]):
         raise ValueError(f"Data source at {config['DATA_SOURCE']!r} does not exist")
 
-    target_es = Elasticsearch(config["ELASTICSEARCH_TARGET_URL"])
+    target_es = Elasticsearch(config["ELASTICSEARCH_TARGET_URL"], maxsize=1)
     report_es = Elasticsearch(config["ELASTICSEARCH_REPORT_URL"])
 
     if os.getenv("DEBUG", ""):
